@@ -64,7 +64,7 @@ ppimg = await samu330.getProfilePicture(`${anu.participants[0].split('@')[0]}@c.
 } catch {
 ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 }
-teks = `Halo @${num.split('@')[0]}\nSelamat datang di group *${mdata.subject}*`
+teks = `Hola @${num.split('@')[0]}\nBienvenido al grupo *${mdata.subject}*`
 let buff = await getBuffer(ppimg)
 samu330.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 } else if (anu.action == 'remove') {
@@ -74,7 +74,7 @@ ppimg = await samu330.getProfilePicture(`${num.split('@')[0]}@c.us`)
 } catch {
 ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 }
-teks = `Sayonara @${num.split('@')[0]}👋`
+teks = `Adios @${num.split('@')[0]}👋`
 let buff = await getBuffer(ppimg)
 samu330.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 }
@@ -111,21 +111,6 @@ const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()
 const args = body.trim().split(/ +/).slice(1)
 const isCmd = body.startsWith(prefix)
 
-mess = {
-wait: '⌛ Sedang di Prosess ⌛',
-success: '✔️ Berhasil ✔️',
-error: {
-stick: '❌ Gagal, terjadi kesalahan saat mengkonversi gambar ke sticker ❌',
-Iv: '❌ Link tidak valid ❌'
-},
-only: {
-group: '❌ Perintah ini hanya bisa di gunakan dalam group! ❌',
-ownerG: '❌ Perintah ini hanya bisa di gunakan oleh owner group! ❌',
-ownerB: '❌ Perintah ini hanya bisa di gunakan oleh owner bot! ❌',
-admin: '❌ Perintah ini hanya bisa di gunakan oleh admin group! ❌',
-Badmin: '❌ Perintah ini hanya bisa di gunakan ketika bot menjadi admin! ❌'
-}
-}
 
 const q = args.join(' ')
 const botNumber = samu330.user.jid
@@ -168,10 +153,10 @@ const isMedia = (type === 'imageMessage' || type === 'videoMessage')
 const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
 const isQuotedVideo = type === 'extendedTextMessage' && content.includes('videoMessage')
 const isQuotedSticker = type === 'extendedTextMessage' && content.includes('stickerMessage')
-if (!isGroup && isCmd) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;32mEXEC\x1b[1;37m]', time, color(command), 'from', color(sender.split('@')[0]), 'args :', color(args.length))
+if (!isGroup && isCmd) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;32mCMD\x1b[1;37m]', time, color(command), 'from', color(sender.split('@')[0]), 'args :', color(args.length))
 if (!isGroup && !isCmd) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;31mRECV\x1b[1;37m]', time, color('Message'), 'from', color(sender.split('@')[0]), 'args :', color(args.length))
-if (isCmd && isGroup) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;32mEXEC\x1b[1;37m]', time, color(command), 'from', color(sender.split('@')[0]), 'in', color(groupName), 'args :', color(args.length))
-if (!isCmd && isGroup) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;31mRECV\x1b[1;37m]', time, color('Message'), 'from', color(sender.split('@')[0]), 'in', color(groupName), 'args :', color(args.length))
+if (isCmd && isGroup) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;32mCMD\x1b[1;37m]', time, color(command), 'from', color(sender.split('@')[0]), 'in', color(groupName), 'args :', color(args.length))
+if (!isCmd && isGroup) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;31mCMD\x1b[1;37m]', time, color('Message'), 'from', color(sender.split('@')[0]), 'in', color(groupName), 'args :', color(args.length))
 
 
 	
