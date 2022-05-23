@@ -1,1 +1,1 @@
-worker : npm i && git pull && npm start 
+worker : npm i && npm start 
