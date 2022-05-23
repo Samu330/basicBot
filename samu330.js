@@ -259,6 +259,7 @@ switch(command) {
 
 
 case 'musica':
+case 'play':
 if (!q) return reply('*Que audio quieres descargar?.....*')
 let plist = await yts(q)
 let imgm = await getBuffer(plist.all[0].image)
@@ -282,6 +283,20 @@ type: 1}],
 break
 
 
+case 'sider':
+if (!isGroup) return reply('Solo disponible para grupos!')
+infom = await samu330.messageInfo(from, sam.message.extendedTextMessage.contextInfo.stanzaId)
+tagg = []
+teks = `✅ Este Mensaje ah sido visto por:\n\n`
+for(let i of infom.reads){
+teks += '@' + i.jid.split('@')[0] + '\n'
+teks += `📲 Hora: ` + moment(`${i.t}` * 1000).tz('America/Mexico_City').format('DD/MM/YYYY HH:mm:ss') + '\n\n'
+tagg.push(i.jid)
+}
+mentions(teks, tagg, true)
+break
+		
+
 case 'welcome':
 if (!isGroup) return reply(mess.only.group)
 if (!isGroupAdmins) return reply(mess.only.admin)
@@ -300,6 +315,20 @@ reply(`*1 para activar y 0 para desactivar.*\nEjemplo: ${prefix}bienvenida 1`)
 }
 break
 	
+case 'lirik':
+case 'letra':
+case 'letras':
+if (args.length < 1) return reply('Escribe el nombre de la cancion')
+samu330.updatePresence(from, Presence.composing)
+if (!q) return reply('*Cual es el nombre de la cancion?*')
+try {
+anu = await getJson(`https://some-random-api.ml/lyrics?title=${q}`)
+lyrics = `🥰Resultado de ${anu.title}:\n\n*Autor:* ${anu.author}\n\n____________________\n\n${anu.lyrics}\n\n🌬Link: ${anu.links.genius}`
+sendFileFromUrl(anu.thumbnail.genius, image, {quoted: sam, caption: lyrics, sendEphemeral: true})
+} catch {
+reply('*_Error_*')
+}
+break
 		
 case 'ip':
 ips = args.join(' ')
@@ -307,7 +336,6 @@ if (!q) return reply('Y la ip?')
 ip = await fetchJson(`http://ip-api.com/json/${ips}`)
 if(ip.status == 'fail') return reply('*ip incorrecta*')
 reply('*Recopilando información.... Tiempo Aproximado:*\n```3 seconds```')
-await sleep(200)
 datos = `*🔍Ip:* _${ips}_
       *Latitud de ip*: ${ip.lat}
       *Longitud de ip*: ${ip.lon}
@@ -322,8 +350,7 @@ datos = `*🔍Ip:* _${ips}_
 _${ip.isp}_                                                                                                                                                                                                    
 🕋 *Organización*: _${ip.org}_                                                                                                                                                                                  
 ${samu}©${ip.as}™${samu}`                            
-			samu330.sendMessage(from, datos, MessageType.text, {quoted: sam})
-await sleep(300)
+samu330.sendMessage(from, datos, MessageType.text, {quoted: sam})
 /*NO CAMBIAR DATOS NI NOMBRES*/samu330.sendMessage(from, { degreesLatitude: `${ip.lat}`, degreesLongitude: `${ip.lon}`, name: '📌Búsqueda por 🐉Samu330🐉', address : `${ip.city}`}, MessageType.liveLocation, {quoted : fliveLoc})
 break
 		
@@ -401,43 +428,6 @@ sendFileFromUrl(random, image, {quoted: sam, caption: `*🔍Busqueda de* _${ggim
 }
 }
 break
-		
-		
-case 'git':
-reshb = await samu330.prepareMessageFromContent(from,{
-"templateMessage": {
-"hydratedFourRowTemplate": {
-"hydratedContentText": "",
-"hydratedFooterText": "",
-"hydratedButtons": [
-{
-"urlButton": {
-"displayText": "",
-"url": ""
-},
-"index": 1
-}
-]
-},
-"hydratedTemplate": {
-"hydratedContentText": `Hola`,
-"hydratedFooterText": `El git de Este Bot...`,
-"hydratedButtons": [
-{
-"urlButton": {
-"displayText": `Click Para ir Al git Ofc...`,
-"url": "https://github.com/Samu330/NyanBot"
-},
-"index": 0
-}
-]
-}
-}
-}, {})
-samu330.relayWAMessage(reshb)
-samu330.sendMessage(from, { text: "Git Ofc del Creador:\nhttps://github.com/Samu330", matchedText: 'https://github.com/Samu330/NyanBot', description: "", title: "Click Aqui !!!", jpegThumbnail: fs.readFileSync('./media/reply.png') }, 'extendedTextMessage', { detectLinks: false, contextInfo: { forwardingScore: 508, isForwarded: true}, quoted: sam})
-break
-
 
 
 default:
