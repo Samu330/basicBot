@@ -29,6 +29,7 @@
     "file-type": "^16.2.0",
     "fluent-ffmpeg": "^2.1.2",
     "lolis.life": "^4.0.0",
+    "yt-search": "^2.7.5",
     "moment-timezone": "^0.5.32",
     "multistream": "^4.0.1",
     "node-fetch": "^2.6.1",
