@@ -180,6 +180,25 @@ console.log(e)
 })
 }
 
+const sendButLocation = async (id, text1, desc1, gam1, but = [], options = {}) => {
+img = gam1
+loc = {
+"degreesLatitude": 0,
+"degreesLongitude": 0,
+"jpegThumbnail": img
+}
+mhan = await samu330.prepareMessage(from, img, location)
+const buttonMessages = {
+locationMessage: loc,
+contentText: text1,
+footerText: desc1,
+buttons: but,
+headerType: 6
+}
+samu330.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
+}
+
+
 	
 	
 
@@ -191,52 +210,22 @@ if (!q) return reply('*Que audio quieres descargar?.....*')
 let plist = await yts(q)
 sendFileFromUrl(plist.all[0].image, image, {quoted: sam, caption: '_*Si no ves la lista de descarga de tu audio, prueba usando el comando play2*_'})
 
-let play2v = samu330.prepareMessageFromContent(from,{
-"listMessage": {
-"title": "🌬 *DESCARGAS DE AUDIO!!*",
-"description": `\n✍🏻Informacion de su Audio.\n\n*°Subido hace* ${plist.all[0].ago}\n\n*°Vistas :* ${plist.all[0].views}\n\n*°Duracion :* ${plist.all[0].timestamp}\n\n*°Canal :* ${plist.all[0].author.name}\n\n*°Link del Canal :* ${plist.all[0].author.url}`,
-"buttonText": "SELECCIONA UN FORMATO DE DESCARGA",
-"listType": "SINGLE_SELECT",
-"sections": [
-{ "title": `[ ${plist.all[0].title} ]`,
-"rows": [
-{
-"title": '🎧Descarga el Audio Original',
-"description": '- Audio en mp3 sin modificacion de duracion -',
-"rowId": `${plist.all[0].title}@list`
-},
-{
-"title": '🎙Descarga el Audio Original en Nota de Voz',
-"description": '- Audio en nota de voz sin modificacion de duracion -',
-"rowId": `${plist.all[0].title}@list1`
-},
-{
-"title": '🎧Descarga el Audio Original con duracion cambiada',
-"description": '- Audio en mp3 con modificacion de duracion -',
-"rowId": `${plist.all[0].title}@list2`
-},
-{
-"title": '🎙Descarga el Audio Original en Nota de Voz con duracion cambiada',
-"description": '- Audio en nota de voz con modificacion de duracion -',
-"rowId": `${plist.all[0].title}@list3`
-}
-]
-},
-{
-"title": `[ Audio con Efecto ]`,
-"rows": [
-{
-"title": '💎Descarga el Audio Con efecto SlowMotion',
-"description": '- Audio en nota de voz con efecto SlowMotion -',
-"rowId": `${plist.all[0].title}@list4`
-}
-]
-}
-]
-}
-}, {quoted: sam})
-samu330.relayWAMessage(play2v)
-
+sendButLocation(from, `✍🏻Informacion de su Audio.
+*🏹Subido hace* ${plist.all[0].ago}
+*👀Vistas :* ${plist.all[0].views}
+*⏳Duracion :* ${plist.all[0].timestamp}
+*🌐Canal :* ${plist.all[0].author.name}
+*📝Link del Canal :* ${plist.all[0].author.url}`, '*Selecciona el formato de descarga:*', `plist.all[0].image`,		
+[{buttonId: `${plist.all[0].title}@voz`, 
+buttonText: {displayText: '[🎙] Nota de Voz'}, 
+type: 1},
+{buttonId: `${plist.all[0].title}@mp3`, 
+buttonText: {displayText: '[🎶] Formato MP3'}, 
+type: 1},
+{buttonId: `${plist.all[0].title}@video`, 
+buttonText: {displayText: '[📽] video'}, 
+type: 1}],
+{quoted: sam, contextInfo: { forwardingScore: 508, isForwarded: true, sendEphemeral: true}})	
 break
 
 
