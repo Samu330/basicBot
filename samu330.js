@@ -207,14 +207,14 @@ switch(command) {
 case 'musica':
 if (!q) return reply('*Que audio quieres descargar?.....*')
 let plist = await yts(q)
-sendFileFromUrl(plist.all[0].image, image, {quoted: sam, caption: '_*Si no ves la lista de descarga de tu audio, prueba usando el comando play2*_'})
-
+let imgm = await getBuffer(plist.all[0].image)
+		
 sendButLocation(from, `✍🏻Informacion de su Audio.
 *🏹Subido hace* ${plist.all[0].ago}
 *👀Vistas :* ${plist.all[0].views}
 *⏳Duracion :* ${plist.all[0].timestamp}
 *🌐Canal :* ${plist.all[0].author.name}
-*📝Link del Canal :* ${plist.all[0].author.url}`, '*Selecciona el formato de descarga:*', `plist.all[0].image`,		
+*📝Link del Canal :* ${plist.all[0].author.url}`, '*Selecciona el formato de descarga:*', imgm,		
 [{buttonId: `${plist.all[0].title}@voz`, 
 buttonText: {displayText: '[🎙] Nota de Voz'}, 
 type: 1},
