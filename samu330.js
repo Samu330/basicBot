@@ -227,6 +227,7 @@ if (test.includes(`@voz`)){
 cancion = `${test.split('@')[0]}`
 
 let plist = await yts(cancion)
+imgCnc = await getBuffer(plist.all[0].image)
 linkCnc = await y2mateA(plist.all[0].url)
 
 sendFileFromUrl(linkCnc[0].link, audio, {quoted: faud, mimetype: 'audio/mp4', ptt: true, sendEphemeral: true, contextInfo: { externalAdReply: { title: `${plist.all[0].title}`, body: "🎁Da click Aqui para descargar el archivo al Dispositivo!", sourceUrl: `${linkCnc[0].link}`, thumbnail: imgCnc}}})
@@ -239,6 +240,7 @@ if (test.includes(`@mp3`)){
 cancion = `${test.split('@')[0]}`
 
 let plist = await yts(cancion)
+imgCnc = await getBuffer(plist.all[0].image)
 linkCnc = await y2mateA(plist.all[0].url)
 
 sendFileFromUrl(linkCnc[0].link, audio, {quoted: faud, mimetype: 'audio/mp4', fileName: `${plist.all[0].title} By Samu330✔`, sendEphemeral: true, contextInfo: { externalAdReply: { title: `${plist.all[0].title}`, body: "🎁Da click Aqui para descargar el archivo al Dispositivo!", sourceUrl: `${linkCnc[0].link}`, thumbnail: imgCnc}}})
