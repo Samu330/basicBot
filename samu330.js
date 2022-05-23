@@ -92,10 +92,13 @@ blocked.push(i.replace('c.us','s.whatsapp.net'))
 samu330.on('chat-update', async (sam) => {
 try {
 if (!sam.hasNewMessage) return
+if (!sam.messages) return
+if (sam.key && sam.key.remoteJid == 'status@broadcast') {
+}
 sam = sam.messages.all()[0]
+sam.message = (Object.keys(sam.message)[0] === 'ephemeralMessage') ? sam.message.ephemeralMessage.message : sam.message
 if (!sam.message) return
-if (sam.key && sam.key.remoteJid == 'status@broadcast') return
-if (sam.key.fromMe) return
+if (!sam.message) return
 global.prefix
 global.blocked
 const content = JSON.stringify(sam.message)
