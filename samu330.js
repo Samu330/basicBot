@@ -188,7 +188,7 @@ console.log(e)
 switch(command) {
 
 
-case 'play':
+case 'musica':
 if (!q) return reply('*Que audio quieres descargar?.....*')
 let plist = await yts(q)
 sendFileFromUrl(plist.all[0].image, image, {quoted: sam, caption: '_*Si no ves la lista de descarga de tu audio, prueba usando el comando play2*_'})
