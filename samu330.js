@@ -102,7 +102,6 @@ global.blocked
 const content = JSON.stringify(sam.message)
 const from = sam.key.remoteJid
 const type = Object.keys(sam.message)[0]
-const apiKey = setting.apiKey // contact me on whatsapp wa.me/6285892766102
 const { text, extendedText, contact, location, liveLocation, image, video, sticker, document, audio, product } = MessageType
 const time = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
 body = (type === 'conversation' && sam.message.conversation.startsWith(prefix)) ? sam.message.conversation : (type == 'imageMessage') && sam.message.imageMessage.caption.startsWith(prefix) ? sam.message.imageMessage.caption : (type == 'videoMessage') && sam.message.videoMessage.caption.startsWith(prefix) ? sam.message.videoMessage.caption : (type == 'extendedTextMessage') && sam.message.extendedTextMessage.text.startsWith(prefix) ? sam.message.extendedTextMessage.text : ''
