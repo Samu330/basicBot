@@ -37,6 +37,7 @@ return `${pad(hours)} Horas ${pad(minutes)} Minutos ${pad(seconds)} Segundos`
 async function starts() {
 const samu330 = new WAConnection()
 samu330.logger.level = 'warn'
+console.log(banner.string)
 samu330.on('qr', () => {
 console.log(color('[','white'), color('!','red'), color(']','white'), color(' Porfavor escanea el codigo QR'))
 })
