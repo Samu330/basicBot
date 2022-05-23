@@ -1,0 +1,27 @@
+{
+  "name": "Bot Basico Para WhatsApp",
+  "description": "Bot para WhatsApp By Samu330",
+  "repository": "https://github.com/Samu330/basicBot",
+  "logo": "https://pbs.twimg.com/profile_images/722831508998897664/TI227a2u_400x400.jpg",
+  "keywords": ["samu330", "nodejs", "bot", "whatsapp bot", "whatsapp automation"],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+    },
+    {
+      "url": "https://github.com/DuckyTeam/heroku-buildpack-imagemagick"
+    },
+    {
+      "url": "https://github.com/clhuang/heroku-buildpack-webp-binaries.git"
+    }
+  ],
+   "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "free"
+        }
+    }
+}
