@@ -226,20 +226,7 @@ let plist = await yts(cancion)
 imgCnc = await getBuffer(`${plist.all[0].image}`)
 linkCnc = await y2mateA(plist.all[0].url)
 
-sendFileFromUrl(linkCnc[0].link, audio, {quoted: faud, mimetype: 'audio/mp4', ptt: true, sendEphemeral: true, contextInfo: { externalAdReply: { title: `${plist.all[0].title}`, body: "Click Aqui para descargar el archivo al dispositivo!", sourceUrl: `${linkCnc[0].link}`, thumbnail: imgCnc}}})
-}
-}
-	
-if (sam.message.buttonsResponseMessage){
-test = sam.message.buttonsResponseMessage.selectedButtonId
-if (test.includes(`@mp3`)){
-cancion = `${test.split('@')[0]}`
-
-let plist = await yts(cancion)
-imgCnc = await getBuffer(`${plist.all[0].image}`)
-linkCnc = await y2mateA(plist.all[0].url)
-
-sendFileFromUrl(linkCnc[0].link, audio, {quoted: faud, mimetype: 'audio/mp4', fileName: `${plist.all[0].title} By Samu330♻`, sendEphemeral: true, contextInfo: { externalAdReply: { title: `${plist.all[0].title}`, body: "Click Aqui para descargar el archivo al dispositivo!", sourceUrl: `${linkCnc[0].link}`, thumbnail: imgCnc}}})
+sendFileFromUrl(linkCnc[0].link, audio, {quoted: faud, mimetype: 'audio/mp4', ptt: true, sendEphemeral: true, contextInfo: { externalAdReply: { title: `${plist.all[0].title}`, body: "[ ★ ] 山姆 330", sourceUrl: `${linkCnc[0].link}`, thumbnail: imgCnc}}})
 }
 }
 
