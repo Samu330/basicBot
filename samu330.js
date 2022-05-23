@@ -98,8 +98,6 @@ if (sam.key && sam.key.remoteJid == 'status@broadcast') {
 }
 sam = sam.messages.all()[0]
 sam.message = (Object.keys(sam.message)[0] === 'ephemeralMessage') ? sam.message.ephemeralMessage.message : sam.message
-if (!sam.message) return
-if (!sam.message) return
 global.prefix
 global.blocked
 const content = JSON.stringify(sam.message)
@@ -131,7 +129,9 @@ Badmin: '❌ Perintah ini hanya bisa di gunakan ketika bot menjadi admin! ❌'
 
 const q = args.join(' ')
 const botNumber = samu330.user.jid
-const ownerNumber = [`${setting.ownerNumber}@s.whatsapp.net`] // replace this with your number
+const ownerNumber = [`${setting.ownerNumber}@s.whatsapp.net`]
+const sender = sam.key.fromMe ? samu330.user.jid : isGroup ? sam.participant : sam.key.remoteJid
+const senderNumber = sender.split("@")[0]
 const isGroup = from.endsWith('@g.us')
 const sender = isGroup ? sam.participant : sam.key.remoteJid
 const groupMetadata = isGroup ? await samu330.groupMetadata(from) : ''
@@ -143,6 +143,7 @@ const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
 const isGroupAdmins = groupAdmins.includes(sender) || false
 const isBienvenida = isGroup ? bienvenida.includes(from) : false
 const isOwner = ownerNumber.includes(sender)
+const itsMe = senderNumber == botNumber
 const isUrl = (url) => {
 return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
 }
