@@ -37,7 +37,6 @@ return `${pad(hours)} Horas ${pad(minutes)} Minutos ${pad(seconds)} Segundos`
 async function starts() {
 const samu330 = new WAConnection()
 samu330.logger.level = 'warn'
-console.log(banner.string)
 samu330.on('qr', () => {
 console.log(color('[','white'), color('!','red'), color(']','white'), color(' Porfavor escanea el codigo QR'))
 })
@@ -143,8 +142,15 @@ const isOwner = ownerNumber.includes(sender)
 const isUrl = (url) => {
 return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
 }
-const reply = (teks) => {
-samu330.sendMessage(from, teks, text, {quoted:sam})
+const reply = async(teks) => {
+samu330.sendMessage(from, teks, MessageType.text, {sendEphemeral: true, quoted:  { key: {
+fromMe: false,
+participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
+},
+message: {
+"imageMessage": { "caption": `${body}`, 'jpegThumbnail': fs.readFileSync('./skull2.jpg')}}
+}, contextInfo: {"externalAdReply": { "title": "꒰ ͜͡➸S̲̲̲̲̲̲̲̲̲̲̲̲̲̅̅̅̅̅̅̅̅̅̅̅̅̅a̲͇̲̲͇͇̲͇̲͇̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅m͇̭͇͇̭͇̭͇̭͇̭̅̿͆̈̅̿͆̈̅̅̿͆̈̿̅̿͆̈͆̅̿͆̈u̲͇̪̲̲͇̪͇̲͇̪̪̲͇̪̲͇̪͋🔥 NyanBot-V2🏹\n", "body": "[ ★ ] 山姆 330", "sourceUrl": `https://www.facebook.com/100046741523390/videos/464846715131937/`,
+ "thumbnail": fs.readFileSync('./skull.jpg')}}})
 }
 const sendMess = (hehe, teks) => {
 samu330.sendMessage(hehe, teks, text)
@@ -200,6 +206,20 @@ samu330.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
 
 	
 	
+if (sam.message.buttonsResponseMessage){
+test = sam.message.buttonsResponseMessage.selectedButtonId
+if (test.includes(`@voz`)){
+cancion = `${test.split('@')[0]}`
+
+let plist = await yts(cancion)
+imgCnc = await getBuffer(`${plist.all[0].image}`)
+linkCnc = await y2mateA(plist.all[0].url)
+
+sendFileFromUrl(linkCnc[0].link, audio, {quoted: faud, mimetype: 'audio/mp4', ptt: true, sendEphemeral: true, contextInfo: { externalAdReply: { title: `${plist.all[0].title}`, body: "[ ★ ] 山姆 330", sourceUrl: `${linkCnc[0].link}`, thumbnail: imgCnc}}})
+}
+}
+
+
 
 switch(command) {
 
