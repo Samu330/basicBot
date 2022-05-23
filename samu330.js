@@ -133,7 +133,6 @@ const ownerNumber = [`${setting.ownerNumber}@s.whatsapp.net`]
 const sender = sam.key.fromMe ? samu330.user.jid : isGroup ? sam.participant : sam.key.remoteJid
 const senderNumber = sender.split("@")[0]
 const isGroup = from.endsWith('@g.us')
-const sender = isGroup ? sam.participant : sam.key.remoteJid
 const groupMetadata = isGroup ? await samu330.groupMetadata(from) : ''
 const groupName = isGroup ? groupMetadata.subject : ''
 const groupId = isGroup ? groupMetadata.jid : ''
