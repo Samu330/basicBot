@@ -185,6 +185,16 @@ message: { "audioMessage": {"mimetype": "audio/mp4", "ptt": true, "seconds": -99
 contextInfo: {
 mentionedJid: [sender]}
 	
+const fvid = {
+key:
+{ fromMe: false,
+participant: `0@s.whatsapp.net`, ...(from ?
+{ remoteJid: "status@broadcast" } : {}) },
+message: { "videoMessage": {"mimetype": "video/mp4", "seconds": -999999}}
+}
+contextInfo: {
+mentionedJid: [sender]}	
+	
 	
 const sendFileFromUrl = async(link, type, options) => {
 hasil = await getBuffer(link)
@@ -244,6 +254,19 @@ imgCnc = await getBuffer(plist.all[0].image)
 linkCnc = await y2mateA(plist.all[0].url)
 
 sendFileFromUrl(linkCnc[0].link, audio, {quoted: faud, mimetype: 'audio/mp4', fileName: `${plist.all[0].title} By Samu330✔`, sendEphemeral: true, contextInfo: { externalAdReply: { title: `${plist.all[0].title}`, body: "🎁Da click Aqui para descargar el archivo al Dispositivo!", sourceUrl: `${linkCnc[0].link}`, thumbnail: imgCnc}}})
+}
+}	
+	
+if (sam.message.buttonsResponseMessage){
+test = sam.message.buttonsResponseMessage.selectedButtonId
+if (test.includes(`@video`)){
+cancion = `${test.split('@')[0]}`
+
+let plist = await yts(cancion)
+imgCnc = await getBuffer(plist.all[0].image)
+linkCnc = await y2mateV(plist.all[0].url)
+
+sendFileFromUrl(linkCnc[0].link, video, {quoted: fvid, mimetype: 'video/mp4', fileName: `${plist.all[0].title} By Samu330✔`, sendEphemeral: true, contextInfo: { externalAdReply: { title: `${plist.all[0].title}`, body: "🎁Da click Aqui para descargar el archivo al Dispositivo!", sourceUrl: `${linkCnc[0].link}`, thumbnail: imgCnc}}})
 }
 }
 
