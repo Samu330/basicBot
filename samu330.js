@@ -322,7 +322,7 @@ if (args.length < 1) return reply('Escribe el nombre de la cancion')
 samu330.updatePresence(from, Presence.composing)
 if (!q) return reply('*Cual es el nombre de la cancion?*')
 try {
-anu = await getJson(`https://some-random-api.ml/lyrics?title=${q}`)
+anu = await fechJson(`https://some-random-api.ml/lyrics?title=${q}`)
 lyrics = `🥰Resultado de ${anu.title}:\n\n*Autor:* ${anu.author}\n\n____________________\n\n${anu.lyrics}\n\n🌬Link: ${anu.links.genius}`
 sendFileFromUrl(anu.thumbnail.genius, image, {quoted: sam, caption: lyrics, sendEphemeral: true})
 } catch {
@@ -349,7 +349,7 @@ datos = `*🔍Ip:* _${ips}_
 🌐 *Proveedor de servicios de Internet*:
 _${ip.isp}_                                                                                                                                                                                                    
 🕋 *Organización*: _${ip.org}_                                                                                                                                                                                  
-${samu}©${ip.as}™${samu}`                            
+_©${ip.as}™_`                            
 samu330.sendMessage(from, datos, MessageType.text, {quoted: sam})
 /*NO CAMBIAR DATOS NI NOMBRES*/samu330.sendMessage(from, { degreesLatitude: `${ip.lat}`, degreesLongitude: `${ip.lon}`, name: '📌Búsqueda por 🐉Samu330🐉', address : `${ip.city}`}, MessageType.liveLocation, {quoted : fliveLoc})
 break
