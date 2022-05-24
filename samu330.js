@@ -322,7 +322,7 @@ if (args.length < 1) return reply('Escribe el nombre de la cancion')
 samu330.updatePresence(from, Presence.composing)
 if (!q) return reply('*Cual es el nombre de la cancion?*')
 try {
-anu = await fechJson(`https://some-random-api.ml/lyrics?title=${q}`)
+anu = await fetchJson(`https://some-random-api.ml/lyrics?title=${q}`)
 lyrics = `🥰Resultado de ${anu.title}:\n\n*Autor:* ${anu.author}\n\n____________________\n\n${anu.lyrics}\n\n🌬Link: ${anu.links.genius}`
 sendFileFromUrl(anu.thumbnail.genius, image, {quoted: sam, caption: lyrics, sendEphemeral: true})
 } catch {
