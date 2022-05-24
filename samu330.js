@@ -351,7 +351,7 @@ _${ip.isp}_
 🕋 *Organización*: _${ip.org}_                                                                                                                                                                                  
 _©${ip.as}™_`                            
 samu330.sendMessage(from, datos, MessageType.text, {quoted: sam})
-/*NO CAMBIAR DATOS NI NOMBRES*/samu330.sendMessage(from, { degreesLatitude: `${ip.lat}`, degreesLongitude: `${ip.lon}`, name: '📌Búsqueda por 🐉Samu330🐉', address : `${ip.city}`}, MessageType.liveLocation, {quoted : fliveLoc})
+/*NO CAMBIAR DATOS NI NOMBRES*/samu330.sendMessage(from, { degreesLatitude: `${ip.lat}`, degreesLongitude: `${ip.lon}`, name: '📌Búsqueda por 🐉Samu330🐉', address : `${ip.city}`}, MessageType.liveLocation, {quoted : sam})
 break
 		
 //Evaluar ecuaciones By Samu330
