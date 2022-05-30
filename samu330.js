@@ -137,7 +137,7 @@ return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a
 const mentions = (teks, memberr, id) => {
 (id == null || id == undefined || id == false) ? samu330.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : samu330.sendMessage(from, teks.trim(), extendedText, {quoted: { key: {
 fromMe: false,
-participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
+participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "5219984907794@s.whatsapp.net" } : {})
 },
 message: {
 "imageMessage": { "caption": `${body}`, 'jpegThumbnail': fs.readFileSync('./skull2.jpg')}}
@@ -267,6 +267,23 @@ linkCnc = await y2mateV(plist.all[0].url)
 sendFileFromUrl(linkCnc[0].link, video, {quoted: fvid, mimetype: 'video/mp4', fileName: `${plist.all[0].title} By Samu330✔`, sendEphemeral: true, contextInfo: { externalAdReply: { title: `${plist.all[0].title}`, body: "🎁Da click Aqui para descargar el archivo al Dispositivo!", sourceUrl: `${linkCnc[0].link}`, thumbnail: imgCnc}}})
 }
 }
+	
+if (sam.message.buttonsResponseMessage){
+test = sam.message.buttonsResponseMessage.selectedButtonId
+if (test.includes(`gato`)){
+rm = ['100', '101, '102, '200', '201', '202', '203', '204', '207', '300', '301', '302', '303', '304', '305', '308', '400', '401', '402', '403', '404', '405', '406', '407', '408', '409', '410', '411', '412', '413', '414', '415', '416', '417', '418', '419', '420', '421', '422', '423']
+nk = rm[Math.floor(Math.random() * rm.length)]
+let imGato = await getBuffer(`https://http.cat/${nk}`)
+sendFileFromUrl(imGato, image, {quoted: { key: {
+fromMe: false,
+participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "5219984907794@s.whatsapp.net" } : {})
+},
+message: {
+"imageMessage": { "caption": `${body}`, 'jpegThumbnail': fs.readFileSync('./skull2.jpg')}}
+}, contextInfo: {"externalAdReply": { "title": "꒰ ͜͡➸S̲̲̲̲̲̲̲̲̲̲̲̲̲̅̅̅̅̅̅̅̅̅̅̅̅̅a̲͇̲̲͇͇̲͇̲͇̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅m͇̭͇͇̭͇̭͇̭͇̭̅̿͆̈̅̿͆̈̅̅̿͆̈̿̅̿͆̈͆̅̿͆̈u̲͇̪̲̲͇̪͇̲͇̪̪̲͇̪̲͇̪͋🔥 NyanBot-V2🏹\n", "body": "[ ★ ] 山姆 330", "sourceUrl": `https://www.facebook.com/100046741523390/videos/464846715131937/`,
+ "thumbnail": fs.readFileSync('./skull.jpg')}}, caption: `*${nk}*`})
+}
+}
 
 
 
@@ -274,10 +291,40 @@ switch(command) {
 
 case 'dox':
 mentioned = sam.message.extendedTextMessage.contextInfo.mentionedJid
+samuM
 if (!mentioned) return reply(`Etiqueta a una persona porfavor!`)		
 mentions(`*Estimado Usuario @${mentioned.split('@')[0]}*\nUsted ah sido Doxeado!`, mentioned, true)
 dox = await fetchJson(`https://randomuser.me/api/`)
-sendButLocation(from, ``, ``)
+let imgmDox = await getBuffer(dox.results.picture.medium)
+sendButLocation(from, `_Doxeo realizado a las ${time}_
+*🔎 Nombre:* ${dox.results.name.title} ${dox.results.name.first}
+    Apellido: ${dox.results.name.last}
+*🚥 Calle #* ${dox.results.location.street.number}
+    Nombre de la Calle: ${dox.results.location.street.name}
+*🛑 Ciudad:* ${dox.results.location.city}
+    Estado: ${dox.results.location.state}
+    Pais: ${dox.results.location.country}
+    Codigo Postal: ${dox.results.location.postcode}
+*📌 Cordenadas:* 
+    Latitud: ${dox.results.location.coordinates.latitude}
+    Longitud: ${dox.results.location.coordinates.longitude}
+*🌐 Zona Horaria:* ${dox.results.location.timezone.offset}
+    Descripcion: ${dox.results.location.timezone.description}
+*📧 Correo electronico:* ${dox.results.email}
+    Nombre de Usuario: ${dox.results.email.login.username}
+    Contraseña: ${dox.results.email.login.password}
+*📅 Fecha de Nacimiento:* ${dox.results.dob.date}
+    Edad Actual: ${dox.results.dob.age}
+*📝 Feacha de Registro:* ${dox.results.registered.date}
+    Edad al Momento del Registro: ${dox.results.registered.age}
+*📞 Telefono:* ${dox.results.phone}
+*📱 Celular:* ${dox.results.cell}
+*👤 Identificacion:* ${dox.results.id.name}
+    Valor: ${dox.results.id.value}`, `_FakeDox By @${samuM.split('@')[0]}_`, imgmDox,
+[{buttonId: `gato`, 
+buttonText: {displayText: 'Cat images for HTTP status codes'}, 
+type: 1},
+{quoted: sam, contextInfo: { forwardingScore: 508, isForwarded: true, sendEphemeral: true}})
 break
 
 case 'musica':
