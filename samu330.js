@@ -131,6 +131,22 @@ const itsMe = senderNumber == botNumber
 const isUrl = (url) => {
 return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
 }
+
+
+
+const mentions = (teks, memberr, id) => {
+(id == null || id == undefined || id == false) ? samu330.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : samu330.sendMessage(from, teks.trim(), extendedText, {quoted: { key: {
+fromMe: false,
+participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
+},
+message: {
+"imageMessage": { "caption": `${body}`, 'jpegThumbnail': fs.readFileSync('./skull2.jpg')}}
+}, contextInfo: {"externalAdReply": { "title": "꒰ ͜͡➸S̲̲̲̲̲̲̲̲̲̲̲̲̲̅̅̅̅̅̅̅̅̅̅̅̅̅a̲͇̲̲͇͇̲͇̲͇̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅m͇̭͇͇̭͇̭͇̭͇̭̅̿͆̈̅̿͆̈̅̅̿͆̈̿̅̿͆̈͆̅̿͆̈u̲͇̪̲̲͇̪͇̲͇̪̪̲͇̪̲͇̪͋🔥 NyanBot-V2🏹\n", "body": "[ ★ ] 山姆 330", "sourceUrl": `https://www.facebook.com/100046741523390/videos/464846715131937/`,
+ "thumbnail": fs.readFileSync('./skull.jpg')}}, contextInfo: {"mentionedJid": memberr}})
+}
+
+
+
 const reply = async(teks) => {
 samu330.sendMessage(from, teks, MessageType.text, {sendEphemeral: true, quoted:  { key: {
 fromMe: false,
@@ -141,11 +157,10 @@ message: {
 }, contextInfo: {"externalAdReply": { "title": "꒰ ͜͡➸S̲̲̲̲̲̲̲̲̲̲̲̲̲̅̅̅̅̅̅̅̅̅̅̅̅̅a̲͇̲̲͇͇̲͇̲͇̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅m͇̭͇͇̭͇̭͇̭͇̭̅̿͆̈̅̿͆̈̅̅̿͆̈̿̅̿͆̈͆̅̿͆̈u̲͇̪̲̲͇̪͇̲͇̪̪̲͇̪̲͇̪͋🔥 NyanBot-V2🏹\n", "body": "[ ★ ] 山姆 330", "sourceUrl": `https://www.facebook.com/100046741523390/videos/464846715131937/`,
  "thumbnail": fs.readFileSync('./skull.jpg')}}})
 }
+
+
 const sendMess = (hehe, teks) => {
 samu330.sendMessage(hehe, teks, text)
-}
-const mentions = (teks, memberr, id) => {
-(id == null || id == undefined || id == false) ? samu330.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : samu330.sendMessage(from, teks.trim(), extendedText, {quoted: sam, contextInfo: {"mentionedJid": memberr}})
 }
 
 colors = ['red','white','black','blue','yellow','green']
@@ -257,6 +272,13 @@ sendFileFromUrl(linkCnc[0].link, video, {quoted: fvid, mimetype: 'video/mp4', fi
 
 switch(command) {
 
+case 'dox':
+mentioned = sam.message.extendedTextMessage.contextInfo.mentionedJid
+if (!mentioned) return reply(`Etiqueta a una persona porfavor!`)		
+mentions(`*Estimado Usuario @${mentioned.split('@')[0]}*\nUsted ah sido Doxeado!`, mentioned, true)
+dox = await fetchJson(`https://randomuser.me/api/`)
+sendButLocation(from, ``, ``)
+break
 
 case 'musica':
 case 'play':
