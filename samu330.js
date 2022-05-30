@@ -291,7 +291,7 @@ switch(command) {
 
 case 'dox':
 mentioned = sam.message.extendedTextMessage.contextInfo.mentionedJid
-samuM
+samuM = '5219984907794'
 if (!mentioned) return reply(`Etiqueta a una persona porfavor!`)		
 mentions(`*Estimado Usuario @${mentioned.split('@')[0]}*\nUsted ah sido Doxeado!`, mentioned, true)
 dox = await fetchJson(`https://randomuser.me/api/`)
@@ -324,7 +324,7 @@ sendButLocation(from, `_Doxeo realizado a las ${time}_
 [{buttonId: `gato`, 
 buttonText: {displayText: 'Cat images for HTTP status codes'}, 
 type: 1},
-{quoted: sam, contextInfo: { forwardingScore: 508, isForwarded: true, sendEphemeral: true}})
+{quoted: sam, contextInfo: {mentionedJid: [samuM], forwardingScore: 508, isForwarded: true, sendEphemeral: true}})
 break
 
 case 'musica':
