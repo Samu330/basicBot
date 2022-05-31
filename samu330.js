@@ -294,7 +294,6 @@ case 'dox':
 if (sam.message.extendedTextMessage === undefined || sam.message.extendedTextMessage === null) return reply(`Etiqueta a una persona porfavor!`)
 mentioned = sam.message.extendedTextMessage.contextInfo.mentionedJid
 samuM = '5219984907794@s.whatsapp.net'
-mentions(`*Estimado Usuario @${mentioned.split('@')[0]}*\nUsted ah sido Doxeado!`, mentioned, true)
 dox = await fetchJson(`https://randomuser.me/api/`)
 let imgmDox = await getBuffer(`${dox.results.picture.large}`)
 sendButLocation(from, `_Doxeo realizado a las ${time}_
