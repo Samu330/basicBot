@@ -133,16 +133,17 @@ return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a
 }
 
 
+const men = {
+key:
+{ fromMe: false,
+participant: `0@s.whatsapp.net`, ...(from ?
+{ remoteJid: "5219984907794@s.whatsapp.net" } : {}) },
+message: { "videoMessage": {"mimetype": "video/mp4", "seconds": -999999}}
+}
+
 
 const mentions = (teks, memberr, id) => {
-(id == null || id == undefined || id == false) ? samu330.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : samu330.sendMessage(from, teks.trim(), extendedText, {quoted: { key: {
-fromMe: false,
-participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "5219984907794@s.whatsapp.net" } : {})
-},
-message: {
-"imageMessage": { "caption": `${body}`, 'jpegThumbnail': fs.readFileSync('./skull2.jpg')}}
-}, contextInfo: {"externalAdReply": { "title": "꒰ ͜͡➸S̲̲̲̲̲̲̲̲̲̲̲̲̲̅̅̅̅̅̅̅̅̅̅̅̅̅a̲͇̲̲͇͇̲͇̲͇̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅m͇̭͇͇̭͇̭͇̭͇̭̅̿͆̈̅̿͆̈̅̅̿͆̈̿̅̿͆̈͆̅̿͆̈u̲͇̪̲̲͇̪͇̲͇̪̪̲͇̪̲͇̪͋🔥 NyanBot-V2🏹\n", "body": "[ ★ ] 山姆 330", "sourceUrl": `https://www.facebook.com/100046741523390/videos/464846715131937/`,
- "thumbnail": fs.readFileSync('./skull.jpg')}}, contextInfo: {"mentionedJid": memberr}})
+(id == null || id == undefined || id == false) ? samu330.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : samu330.sendMessage(from, teks.trim(), extendedText, {quoted: men, contextInfo: {"mentionedJid": memberr}})
 }
 
 
@@ -295,7 +296,7 @@ mentioned = sam.message.extendedTextMessage.contextInfo.mentionedJid
 samuM = '5219984907794@s.whatsapp.net'
 mentions(`*Estimado Usuario @${samuM.split('@')[0]}*\nUsted ah sido Doxeado!`, mentioned, true)
 dox = await fetchJson(`https://randomuser.me/api/`)
-let imgmDox = await getBuffer(dox.results.picture.medium)
+let imgmDox = await getBuffer(`${dox.results.picture.medium}`)
 sendButLocation(from, `_Doxeo realizado a las ${time}_
 *🔎 Nombre:* ${dox.results.name.title} ${dox.results.name.first}
     Apellido: ${dox.results.name.last}
