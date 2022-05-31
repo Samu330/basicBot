@@ -323,7 +323,7 @@ sendButLocation(from, `_Doxeo realizado a las ${time}_
     Valor: ${dox.results.id.value}`, `_FakeDox By @${samuM.split('@')[0]}_`, imgmDox,
 [{buttonId: `gato`, 
 buttonText: {displayText: 'Cat images for HTTP status codes'}, 
-type: 1},
+type: 1}],
 {quoted: sam, contextInfo: {mentionedJid: [samuM], forwardingScore: 508, isForwarded: true, sendEphemeral: true}})
 break
 
