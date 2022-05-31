@@ -143,7 +143,7 @@ message: { "videoMessage": {"mimetype": "video/mp4", "seconds": -999999}}
 
 
 const mentions = (teks, memberr, id) => {
-(id == null || id == undefined || id == false) ? samu330.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : samu330.sendMessage(from, teks.trim(), extendedText, {quoted: men, contextInfo: {"mentionedJid": memberr}})
+(id == null || id == undefined || id == false) ? samu330.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": [memberr]}}) : samu330.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": [memberr]}, quoted: men})
 }
 
 
@@ -294,9 +294,9 @@ case 'dox':
 if (sam.message.extendedTextMessage === undefined || sam.message.extendedTextMessage === null) return reply(`Etiqueta a una persona porfavor!`)
 mentioned = sam.message.extendedTextMessage.contextInfo.mentionedJid
 samuM = '5219984907794@s.whatsapp.net'
-mentions(`*Estimado Usuario @${samuM.split('@')[0]}*\nUsted ah sido Doxeado!`, mentioned, true)
+mentions(`*Estimado Usuario @${mentioned.split('@')[0]}*\nUsted ah sido Doxeado!`, mentioned, true)
 dox = await fetchJson(`https://randomuser.me/api/`)
-let imgmDox = await getBuffer(`${dox.results.picture.medium}`)
+let imgmDox = await getBuffer(`${dox.results.picture.large}`)
 sendButLocation(from, `_Doxeo realizado a las ${time}_
 *🔎 Nombre:* ${dox.results.name.title} ${dox.results.name.first}
     Apellido: ${dox.results.name.last}
