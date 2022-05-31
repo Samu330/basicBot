@@ -271,7 +271,7 @@ sendFileFromUrl(linkCnc[0].link, video, {quoted: fvid, mimetype: 'video/mp4', fi
 if (sam.message.buttonsResponseMessage){
 test = sam.message.buttonsResponseMessage.selectedButtonId
 if (test.includes(`gato`)){
-rm = ['100', '101, '102', '200', '201', '202', '203', '204', '207', '300', '301', '302', '303', '304', '305', '308', '400', '401', '402', '403', '404', '405', '406', '407', '408', '409', '410', '411', '412', '413', '414', '415', '416', '417', '418', '419', '420', '421', '422', '423']
+rm = ['100', '101', '102', '200', '201', '202', '203', '204', '207', '300', '301', '302', '303', '304', '305', '308', '400', '401', '402', '403', '404', '405', '406', '407', '408', '409', '410', '411', '412', '413', '414', '415', '416', '417', '418', '419', '420', '421', '422', '423']
 nk = rm[Math.floor(Math.random() * rm.length)]
 let imGato = await getBuffer(`https://http.cat/${nk}`)
 sendFileFromUrl(imGato, image, {quoted: { key: {
