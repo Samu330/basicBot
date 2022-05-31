@@ -295,7 +295,7 @@ if (sam.message.extendedTextMessage === undefined || sam.message.extendedTextMes
 mentioned = sam.message.extendedTextMessage.contextInfo.mentionedJid
 samuM = '5219984907794@s.whatsapp.net'
 dox = await fetchJson(`https://randomuser.me/api/`)
-let imgmDox = await getBuffer(`${dox.results.picture.large}`)
+let imgmDox = await getBuffer(`https://i.scdn.co/image/ab67616d0000b27386df379cbc4304457882f47d`)
 sendButLocation(from, `_Doxeo realizado a las ${time}_
 *🔎 Nombre:* ${dox.results.name.title} ${dox.results.name.first}
     Apellido: ${dox.results.name.last}
